@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>アートトイプロジェクト計画</title>
+    <style>
+        :root {
+            --primary-color: #2D5D7B; /* メインカラー：深い青 */
+            --accent-color: #E6B422;  /* アクセントカラー：金色 */
+            --bg-color: #f9f9f9;
+            --text-color: #333;
+            --section-spacing: 60px;
+        }
+        
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .title {
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 20px;
+            color: var(--text-color);
+            margin-bottom: 20px;
+        }
+        
+        .date {
+            font-size: 16px;
+            color: var(--primary-color);
+        }
+        
+        .section {
+            margin-bottom: var(--section-spacing);
+        }
+        
+        .section-title {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--primary-color);
+        }
+        
+        .highlight {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        .two-column {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .column {
+            flex: 1;
+        }
+        
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        ul li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        ul li:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+        }
+        
+        .timeline {
+            display: flex;
+            margin: 30px 0;
+            position: relative;
+            justify-content: space-between;
+        }
+        
+        .timeline:before {
+            content: "";
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background-color: var(--primary-color);
+            z-index: 1;
+        }
+        
+        .milestone {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            width: 120px;
+        }
+        
+        .milestone-dot {
+            width: 20px;
+            height: 20px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            border: 4px solid var(--bg-color);
+        }
+        
+        .milestone.highlight .milestone-dot {
+            background-color: var(--accent-color);
+            width: 24px;
+            height: 24px;
+        }
+        
+        .milestone-label {
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        
+        .milestone-date {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: left;
+            padding: 12px;
+        }
+        
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        tr:nth-child(even) {
+            background-color: rgba(45, 93, 123, 0.1);
+        }
+        
+        .chart-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 20px 0;
+            height: 300px;
+        }
+        
+        .chart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+        }
+        
+        .bar-container {
+            height: 250px;
+            display: flex;
+            align-items: flex-end;
+            margin-bottom: 10px;
+        }
+        
+        .bar {
+            width: 80px;
+            background-color: var(--primary-color);
+            margin: 0 10px;
+        }
+        
+        .bar.accent {
+            background-color: var(--accent-color);
+        }
+        
+        .chart-label {
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .target-box {
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: rgba(45, 93, 123, 0.05);
+        }
+        
+        .target-title {
+            color: var(--primary-color);
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .target-subtitle {
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .footer {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid var(--primary-color);
+            text-align: center;
+            color: var(--primary-color);
+        }
+        
+        .summary-box {
+            background-color: rgba(230, 180, 34, 0.1);
+            border-left: 4px solid var(--accent-color);
+            padding: 20px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- ヘッダー -->
+        <div class="header">
+            <h1 class="title">アートトイプロジェクト計画</h1>
+            <div class="subtitle">デザイン完了からプロモーションまでの製品化ロードマップ</div>
+            <div class="date">2025年4月21日</div>
+        </div>
+        
+        <!-- プロジェクト概要 -->
+        <div class="section">
+            <h2 class="section-title">1. プロジェクト概要</h2>
+            <div class="two-column">
+                <div class="column">
+                    <h3 style="color: var(--primary-color);">目的と目標</h3>
+                    <ul>
+                        <li>オリジナルアートトイの製品化と市場投入</li>
+                        <li><span class="highlight">6月のデザイン完了</span>から<span class="highlight">11月の初展示</span>までを効率的に管理</li>
+                        <li>国内外のアートトイ市場への参入足がかりを構築</li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h3 style="color: var(--primary-color);">重要マイルストーン</h3>
+                    <ul>
+                        <li><span class="highlight">6月</span>：トイ・デザイン完了</li>
+                        <li><span class="highlight">8月中旬</span>：プロトタイプ完成</li>
+                        <li><span class="highlight">11月</span>：初回展示（Design Festa Autumn）</li>
+                        <li><span class="highlight">2月</span>：次フェーズ展開（Wonder Festival等）</li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <h3 style="color: var(--primary-color);">プロジェクトの流れ</h3>
+                <div class="timeline">
+                    <div class="milestone">
+                        <div class="milestone-dot"></div>
+                        <div class="milestone-label">製造パートナー選定</div>
+                        <div class="milestone-date">～5月末</div>
+                    </div>
+                    <div class="milestone highlight">
+                        <div class="milestone-dot"></div>
+                        <div class="milestone-label">デザイン完了</div>
+                        <div class="milestone-date">6月</div>
+                    </div>
+                    <div class="milestone">
+                        <div class="milestone-dot"></div>
+                        <div class="milestone-label">プロトタイプ製作</div>
+                        <div class="milestone-date">7月</div>
+                    </div>
+                    <div class="milestone highlight">
+                        <div class="milestone-dot"></div>
+                        <div class="milestone-label">プロトタイプ完成</div>
+                        <div class="milestone-date">8月中旬</div>
+                    </div>
+                    <div class="milestone">
+                        <div class="milestone-dot"></div>
+                        <div class="milestone-label">マーケティング準備</div>
+                        <div class="milestone-date">9月</div>
+                    </div>
+                    <div class="milestone highlight">
+                        <div class="milestone-dot"></div>
+                        <div class="milestone-label">初回展示</div>
+                        <div class="milestone-date">11月</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- マイルストーン詳細 -->
+        <div class="section">
+            <h2 class="section-title">2. プロジェクト・マイルストーン詳細</h2>
+            <table>
+                <tr>
+                    <th>期間</th>
+                    <th>マイルストーン</th>
+                    <th>主なタスク</th>
+                </tr>
+                <tr>
+                    <td>～5月末</td>
+                    <td>製造パートナー選定</td>
+                    <td>・金型／３Dプリント業者リサーチ<br>・見積もり取得＆比較</td>
+                </tr>
+                <tr>
+                    <td><strong>6月</strong></td>
+                    <td><strong>トイ・デザイン完了</strong></td>
+                    <td>・最終アートワーク確定<br>・３Dデータ入稿用フォーマット調整</td>
+                </tr>
+                <tr>
+                    <td>7月上旬</td>
+                    <td>プロトタイプ製作開始</td>
+                    <td>・材料選定（ソフビ・レジンなど）<br>・第一号プロトタイプ発注</td>
+                </tr>
+                <tr>
+                    <td>7月下旬</td>
+                    <td>プロトタイプレビュー①</td>
+                    <td>・フィット感・質感チェック<br>・必要修正箇所のディレクション</td>
+                </tr>
+                <tr>
+                    <td><strong>8月中旬</strong></td>
+                    <td><strong>プロトタイプ完成</strong></td>
+                    <td>・二次試作：カラーリング・塗装テスト<br>・最終フィードバック反映</td>
+                </tr>
+                <tr>
+                    <td>8月下旬</td>
+                    <td>量産準備／金型調整</td>
+                    <td>・金型最終設計<br>・初回ロット数量・納期確定</td>
+                </tr>
+                <tr>
+                    <td>9月</td>
+                    <td>マーケティング素材準備</td>
+                    <td>・製品写真撮影<br>・プロモーション動画制作<br>・プレスリリース案作成</td>
+                </tr>
+                <tr>
+                    <td>10月</td>
+                    <td>出展イベント選定＆申し込み</td>
+                    <td>・イベント一覧の比較検討<br>・申し込み締切・ブース配置確保</td>
+                </tr>
+                <tr>
+                    <td><strong>11月</strong></td>
+                    <td><strong>初回展示＆プロモーション</strong></td>
+                    <td>・【Design Festa Autumn】出展<br>・SNS／メールマガジンで告知</td>
+                </tr>
+                <tr>
+                    <td>12月～</td>
+                    <td>フォローアップ</td>
+                    <td>・反応分析（商談数、SNSエンゲージメント）<br>・次回イベント準備</td>
+                </tr>
+            </table>
+        </div>
+        
+        <!-- イベント一覧 -->
+        <div class="section">
+            <h2 class="section-title">3. 国内外アートトイ関連イベント一覧</h2>
+            <table>
+                <tr>
+                    <th>イベント名</th>
+                    <th>開催時期・場所</th>
+                    <th>特徴・ターゲット</th>
+                </tr>
+                <tr>
+                    <td><strong>Wonder Festival (ワンフェス)</strong></td>
+                    <td>2月末（冬）／7月末（夏）<br>幕張メッセ</td>
+                    <td>ガレージキット＆フィギュア市場の最大手</td>
+                </tr>
+                <tr>
+                    <td><strong>Design Festa</strong></td>
+                    <td>5月・11月<br>東京ビッグサイト</td>
+                    <td>クリエイター直売型の大型アート見本市</td>
+                </tr>
+                <tr>
+                    <td>Tokyo Toy Show</td>
+                    <td>6月<br>東京ビッグサイト</td>
+                    <td>玩具見本市、メディア・バイヤー向け</td>
+                </tr>
+                <tr>
+                    <td><strong>DesignerCon (米・LA)</strong></td>
+                    <td>11月<br>アナハイム</td>
+                    <td>海外コレクター＆アートトイ市場の新たなポータル</td>
+                </tr>
+                <tr>
+                    <td>Hong Kong Toys & Games Fair</td>
+                    <td>1月<br>香港コンベンションセンター</td>
+                    <td>アジア地域の玩具輸出バイヤー多数</td>
+                </tr>
+                <tr>
+                    <td><strong>New York Toy Fair</strong></td>
+                    <td>2月<br>ニューヨーク</td>
+                    <td>米国市場参入／現地メディア露出</td>
+                </tr>
+                <tr>
+                    <td>Nuremberg International Toy Fair</td>
+                    <td>2月<br>ニュルンベルク</td>
+                    <td>ヨーロッパ最大規模の玩具トレードショー</td>
+                </tr>
+                <tr>
+                    <td>Shanghai Toy & Game Fair</td>
+                    <td>6月<br>上海</td>
+                    <td>中国市場のバイヤー向け</td>
+                </tr>
+            </table>
+
+            <div class="chart-container">
+                <div class="chart">
+                    <div class="bar-container">
+                        <div class="bar" style="height: 80%"></div>
+                    </div>
+                    <div class="chart-label">国内<br>イベント</div>
+                </div>
+                <div class="chart">
+                    <div class="bar-container">
+                        <div class="bar accent" style="height: 60%"></div>
+                    </div>
+                    <div class="chart-label">アジア<br>イベント</div>
+                </div>
+                <div class="chart">
+                    <div class="bar-container">
+                        <div class="bar" style="height: 70%"></div>
+                    </div>
+                    <div class="chart-label">北米<br>イベント</div>
+                </div>
+                <div class="chart">
+                    <div class="bar-container">
+                        <div class="bar accent" style="height: 40%"></div>
+                    </div>
+                    <div class="chart-label">欧州<br>イベント</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ターゲットイベント計画 -->
+        <div class="section">
+            <h2 class="section-title">4. ターゲットイベント＆プロモーション計画</h2>
+            <div class="two-column">
+                <div class="column">
+                    <div class="target-box">
+                        <div class="target-title">Primary Target：Design Festa Autumn（11月）</div>
+                        <div class="target-subtitle">理由</div>
+                        <ul>
+                            <li>クリエイター直売型のため、小ロットかつプロトタイプでも訴求しやすい</li>
+                            <li>来場者の多様性が高く、コレクター／バイヤー両方へアプローチ可能</li>
+                        </ul>
+                        <div class="target-subtitle">準備</div>
+                        <ul>
+                            <li>9月中に出展申込</li>
+                            <li>10月にブースレイアウト・デモ版用在庫準備</li>
+                            <li>10月末までにSNSティーザー開始</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="target-box">
+                        <div class="target-title">Secondary Target：DesignerCon (LA・11月)</div>
+                        <div class="target-subtitle">理由</div>
+                        <ul>
+                            <li>海外のアートトイ市場への足がかり</li>
+                            <li>国内外コレクターへの認知拡大およびバイヤー獲得</li>
+                        </ul>
+                        <div class="target-subtitle">準備</div>
+                        <ul>
+                            <li>同じく9月申込</li>
+                            <li>輸出通関手続き準備</li>
+                            <li>11月上旬には現地プロモ動画公開</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="column">
+                    <div class="target-box">
+                        <div class="target-title">Next Phase：Wonder Festival (冬・2月)</div>
+                        <div class="target-subtitle">理由</div>
+                        <ul>
+                            <li>国内大手フィギュア市場への本格参入</li>
+                            <li>量産サンプルを展示し受注獲得を狙う</li>
+                        </ul>
+                        <div class="target-subtitle">準備</div>
+                        <ul>
+                            <li>12月～1月に量産版サンプル製造</li>
+                            <li>1月に展示資料・商談用カタログ作成</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="target-box">
+                        <div class="target-title">Next Phase：New York Toy Fair（2月）</div>
+                        <div class="target-subtitle">理由</div>
+                        <ul>
+                            <li>玩具卸市場への本格参入</li>
+                            <li>量産サンプルを展示し受注獲得を狙う</li>
+                        </ul>
+                        <div class="target-subtitle">準備</div>
+                        <ul>
+                            <li>12月～1月に量産版サンプル製造</li>
+                            <li>1月に展示資料・商談用カタログ作成</li>
+                            <li>米国バイヤー向け価格戦略・流通戦略の策定</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <h3 style="color: var(--primary-color);">展示会戦略のポイント</h3>
+                <ul>
+                    <li>まずは<span class="highlight">直販型イベント</span>で市場反応を確認</li>
+                    <li>その後、<span class="highlight">バイヤー向けイベント</span>で流通チャネル開拓</li>
+                    <li>反応を見ながら<span class="highlight">国内外バランス</span>を調整</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- まとめ -->
+        <div class="section">
+            <h2 class="section-title">5. プロジェクト計画まとめ</h2>
+            <div class="two-column">
+                <div class="column">
+                    <h3 style="color: var(--primary-color);">重要マイルストーン</h3>
+                    <ul>
+                        <li><span class="highlight">6月</span>：デザイン完了</li>
+                        <li><span class="highlight">8月中旬</span>：プロトタイプ完成</li>
+                        <li><span class="highlight">11月</span>：初回展示</li>
+                    </ul>
+                    
+                    <h3 style="color: var(--primary-color); margin-top: 30px;">リソース配分</h3>
+                    <ul>
+                        <li>デザイン〜試作：<span class="highlight">技術部門中心</span></li>
+                        <li>マーケティング〜展示：<span class="highlight">営業部門中心</span></li>
+                        <li>展示後フォローアップ：<span class="highlight">全部門連携</span></li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h3 style="color: var(--primary-color);">今後のアクション</h3>
+                    <ul>
+                        <li>各マイルストーンの<span class="highlight">担当者アサイン</span>を完了</li>
+                        <li>各イベントごとの<span class="highlight">予算配分</span>を決定</li>
+                        <li>製造パートナーとの<span class="highlight">契約条件</span>を確定</li>
+                        <li>プロモーション素材作成の<span class="highlight">外注先選定</span></li>
+                    </ul>
+                    
+                    <div class="summary-box">
+                        <div style="font-weight: bold; margin-bottom: 10px;">次回会議：5月10日</div>
+                        製造パートナー選定の最終報告と<br>
+                        各タスク担当者の決定を行います
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <div style="font-size: 20px; font-weight: bold; color: var(--primary-color);">6月のデザイン完了から11月の初展示まで</div>
+                <div style="font-size: 16px; margin-top: 10px;">アートトイ市場への効果的な参入を目指します</div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            アートトイプロジェクト計画 | 2025年4月21日
+        </div>
+    </div>
+</body>
+</html>
